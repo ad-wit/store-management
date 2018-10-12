@@ -1,0 +1,3 @@
+<ng-container *ngIf="(users$ | async) as users">
+  <app-users-list [users]="users" (selected)="userSelected($event)"></app-users-list>
+</ng-container>
