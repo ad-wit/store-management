@@ -11,7 +11,7 @@ import { RouterModule } from '@angular/router';
       },
       {
         path:':id',
-        loadChildren: './view-users/update-users.module#UpdateUsersModule',
+        loadChildren: './update-users/update-users.module#UpdateUsersModule',
         canLoad: []
       }
     ])

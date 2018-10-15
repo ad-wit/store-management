@@ -1,7 +1,6 @@
-import * as fromRoot from '../../../state/app.state';
-import * as fromSelectedUser from '../state/reducer';
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-
+import * as fromRoot from '../../../state/app.state';
+import * as fromSelectedUser from './reducer';
 
 export interface State extends fromRoot.State {
 

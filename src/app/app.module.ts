@@ -13,6 +13,8 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AppMaterialModule } from './app-material.module';
 import { NavbarComponent } from './navbar/navbar.component';
+import { AdminModule } from './admin/admin.module';
+import { AuthService } from './admin/auth.service';
 
 @NgModule({
   declarations: [
@@ -26,6 +28,7 @@ import { NavbarComponent } from './navbar/navbar.component';
     FormsModule,
     AppRoutingModule,
     AppMaterialModule,
+    AdminModule,
     StoreModule.forRoot({}),
     EffectsModule.forRoot([]),
     StoreDevtoolsModule.instrument({
@@ -34,7 +37,7 @@ import { NavbarComponent } from './navbar/navbar.component';
       logOnly: environment.production,
     }),
   ],
-  providers: [],
+  providers: [ AuthService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

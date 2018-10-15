@@ -13,7 +13,7 @@ export class UsersListComponent {
   @Input() users: User[];
   @Output() selected = new EventEmitter<User>();
 
-  displayedColumns: string[] = ['name', 'email', 'phone', 'button'];
+  displayedColumns: string[] = ['position', 'name', 'email', 'phone', 'button'];
 
   userSelected(user: User): void {
 

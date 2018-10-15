@@ -15,12 +15,31 @@ export function reducer(state: SelectedUserState = initialState, action: UserAct
 
   switch(action.type) {
 
+    case UserActionsTypes.InitializeUser:
+      return {
+        ...state,
+        user: {
+          id: 0,
+          name: '',
+          email: '',
+          phone: '',
+          address: '',
+          createdAt: ''
+        }
+      };
+
+    case UserActionsTypes.ResetUser:
+      return {
+        ...state,
+        user: null
+      };
+
     case UserActionsTypes.LoadUserSuccess:
       return {
         ...state,
         user: action.payload,
         error: ''
-      }
+      };
 
     case UserActionsTypes.UpdateUserSuccess:
       return {

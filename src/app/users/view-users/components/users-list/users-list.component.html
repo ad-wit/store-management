@@ -1,4 +1,16 @@
-<table mat-table [dataSource]="users" class="">
+<div>
+  <span>Users List:</span>
+  <ng-container>
+    <button mat-raised-button color="accent" [ngStyle]="{'float': 'right'}" [routerLink]="[ '/users/0/add' ]">Add User</button>
+  </ng-container>
+</div>
+<table mat-table [dataSource]="users" class="mat-elevation-z8">
+
+  <ng-container matColumnDef="position">
+    <th mat-header-cell *matHeaderCellDef>#</th>
+    <td mat-cell *matCellDef="let row; let i = index;">{{i+1}}</td>
+  </ng-container>
+
   <ng-container matColumnDef="name">
     <th mat-header-cell *matHeaderCellDef>Name</th>
     <td mat-cell *matCellDef="let row">{{row.name}}</td>
@@ -16,7 +28,12 @@
 
   <ng-container matColumnDef="button">
     <th mat-header-cell *matHeaderCellDef></th>
-    <td mat-cell *matCellDef="let row"><button (click)="userSelected(row)">View</button></td>
+    <td mat-cell *matCellDef="let row">
+      <button mat-button color="primary" (click)="userSelected(row)">View</button>
+      <ng-container *ngIf="true">
+        <button mat-button color="warn" [routerLink]="[ '/users', row.id, 'edit' ]">Edit</button>
+      </ng-container>
+    </td>
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

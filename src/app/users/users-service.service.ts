@@ -15,7 +15,7 @@ export class UsersService {
 
   getUsers(): Observable<User[]> {
 
-    return this.http.get<User[]>(this.usersUrl)
+    return this.http.get<User[]>(`${this.usersUrl}?sortBy=createdAt&order=asc`)
       .pipe(
         tap(data => console.log(JSON.stringify(data))),
         catchError(this.handleError())

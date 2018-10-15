@@ -1,0 +1,7 @@
+<app-edit-user 
+  [user]="userSelected$ | async"
+  (update)="updateUser($event)"
+  (create)="addUser($event)"
+  (delete)="deleteUser($event)"
+  (cancel)="resetUser()"
+  ></app-edit-user>

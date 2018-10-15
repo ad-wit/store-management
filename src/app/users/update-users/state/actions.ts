@@ -2,6 +2,8 @@ import { Action } from '@ngrx/store';
 import { User } from '../../user';
 
 export enum UserActionsTypes {
+  InitializeUser = '[User] Initialize User',
+  ResetUser = '[User] Reset User',
   LoadUser = '[User] Load User',
   LoadUserSuccess = '[User] Load User Success',
   LoadUserFail = '[User] Load User Fail',
@@ -14,6 +16,18 @@ export enum UserActionsTypes {
   DeleteUser = '[User] Delete User',
   DeleteUserSuccess = '[User] Delete User Success',
   DeleteUserFail = '[User] Delete User Fail'
+}
+
+export class InitializeUser implements Action {
+  readonly type = UserActionsTypes.InitializeUser;
+
+  constructor() {}
+}
+
+export class resetUser implements Action {
+  readonly type = UserActionsTypes.ResetUser;
+
+  constructor() {}
 }
 
 export class LoadUser implements Action {
@@ -89,6 +103,8 @@ export class DeleteUserFail implements Action {
 }
 
 export type UserActions = 
+  InitializeUser |
+  resetUser |
   LoadUser |
   LoadUserSuccess |
   LoadUserFail |
