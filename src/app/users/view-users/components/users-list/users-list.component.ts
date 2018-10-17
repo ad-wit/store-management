@@ -12,6 +12,7 @@ export class UsersListComponent {
 
   @Input() users: User[];
   @Output() selected = new EventEmitter<User>();
+  @Input() adminRole: string;
 
   displayedColumns: string[] = ['position', 'name', 'email', 'phone', 'button'];
 

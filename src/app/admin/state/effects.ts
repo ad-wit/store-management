@@ -33,6 +33,7 @@ export class Effects {
                 username: data.username,
                 role: data.role
               };
+              localStorage.setItem('admin', JSON.stringify(admin));
               return (new adminActions.AdminLoginSuccess(admin));
             } else {
               return (new adminActions.AdminLoginFail('Invalid username or password'));

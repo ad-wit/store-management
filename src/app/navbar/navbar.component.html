@@ -1,1 +1,11 @@
-<mat-toolbar [color]="default">Store Management App</mat-toolbar>
+<mat-toolbar [color]="default">
+  <mat-toolbar-row>
+    <span>Store Management App</span>
+    <span class="example-spacer"></span>
+    <ng-container *ngIf="online">
+      <button mat-raised-button 
+                  color="primary" 
+                  (click)="logout()"><mat-icon class="example-icon">logout</mat-icon></button>
+    </ng-container>
+  </mat-toolbar-row>
+</mat-toolbar>

@@ -1,0 +1,3 @@
+<ng-container *ngIf="(products$ | async) as products">
+  <app-products-list [products]="products" [adminRole]="true" (view)="viewProduct($event)" (detail)="detailProduct($event)"></app-products-list>
+</ng-container>

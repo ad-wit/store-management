@@ -12,9 +12,19 @@ import { UsersGuard } from './guards/users-guard.service';
         canActivate: [ UsersGuard ]
       },
       {
+        path: 'products',
+        loadChildren: './products/products.module#ProductsModule',
+        canLoad: [  ],
+        canActivate: [  ]
+      },
+      {
         path: '',
         redirectTo: 'login',
         pathMatch: 'full'
+      },
+      {
+        path: '**',
+        redirectTo: 'login'
       }
     ])
   ],

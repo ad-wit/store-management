@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { UpdateUsersGuard } from './update-users-guard.service';
 
 @NgModule({
   imports: [
@@ -7,15 +8,20 @@ import { RouterModule } from '@angular/router';
       {
         path: '',
         loadChildren: './view-users/view-users.module#ViewUsersModule',
-        canLoad: []
       },
       {
         path:':id',
         loadChildren: './update-users/update-users.module#UpdateUsersModule',
-        canLoad: []
+        canLoad: [ UpdateUsersGuard ],
+        canActivate: [ UpdateUsersGuard ]
+      },
+      {
+        path: '**',
+        redirectTo: ''
       }
     ])
   ],
-  declarations: []
+  declarations: [],
+  providers: [ UpdateUsersGuard ]
 })
 export class UsersRoutingModule { }

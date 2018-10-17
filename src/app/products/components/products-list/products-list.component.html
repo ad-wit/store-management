@@ -1,0 +1,51 @@
+<div>
+  <span>Products List:</span>
+  <ng-container *ngIf="true">
+      <button mat-raised-button color="accent" [ngStyle]="{'float': 'right'}" (click)="detailProduct(0)">Add Product</button>
+  </ng-container>
+</div>
+<table mat-table [dataSource]="products" class="mat-elevation-z8">
+
+  <ng-container matColumnDef="position">
+    <th mat-header-cell *matHeaderCellDef>#</th>
+    <td mat-cell *matCellDef="let row; let i = index;">{{i+1}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef>Name</th>
+    <td mat-cell *matCellDef="let row">{{row.name}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="code">
+    <th mat-header-cell *matHeaderCellDef>Code</th>
+    <td mat-cell *matCellDef="let row">{{row.code}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="type">
+    <th mat-header-cell *matHeaderCellDef>Type</th>
+    <td mat-cell *matCellDef="let row">{{row.type}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="price">
+    <th mat-header-cell *matHeaderCellDef>Price</th>
+    <td mat-cell *matCellDef="let row">{{row.price | currency:'USD':'symbol':'.2-2'}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="inStock">
+    <th mat-header-cell *matHeaderCellDef>In Stock</th>
+    <td mat-cell *matCellDef="let row">{{row.inStock}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="button">
+    <th mat-header-cell *matHeaderCellDef></th>
+    <td mat-cell *matCellDef="let row">
+      <button mat-button color="primary" (click)="viewProduct(row)">View</button>
+      <ng-container *ngIf="true">
+        <button mat-button color="warn" (click)="detailProduct(row.id)">Edit</button>
+      </ng-container>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

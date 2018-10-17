@@ -3,7 +3,7 @@ import { Injectable } from "@angular/core";
 import { map, mergeMap, catchError } from "rxjs/operators";
 import { of, Observable } from "rxjs";
 
-import { UsersService } from "../../users-service.service";
+import { UsersService } from "../../users.service";
 
 import { User } from "../../user";
 

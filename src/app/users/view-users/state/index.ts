@@ -1,5 +1,5 @@
 import * as fromRoot from '../../../state/app.state';
-import * as fromUsersList from '../state/reducer';
+import * as fromUsersList from './reducer';
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 
 

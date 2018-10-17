@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Router, CanLoad, Route, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot} from '@angular/router';
+import { CanLoad, Route, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router} from '@angular/router';
 
 import { AuthService } from '../admin/auth.service';
 
@@ -9,13 +9,20 @@ export  class UsersGuard implements CanLoad, CanActivate {
   constructor(private authService: AuthService,
               private router: Router) { }
 
-  canLoad(route: Route): boolean {
-    
-    return this.authService.isLoggedIn();
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
+    return this.checkLoggedIn(state.url);
   }
 
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
+  canLoad(route: Route): boolean {
+    return this.checkLoggedIn(route.path);
+  }
 
-    return this.authService.isLoggedIn();
+  checkLoggedIn(url: string): boolean {
+    if (this.authService.isLoggedIn()) {
+      return true;
+    }
+    this.authService.redirectUrl = url;
+    this.router.navigate(['/login']);
+    return false;
   }
 }

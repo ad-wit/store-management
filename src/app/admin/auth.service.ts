@@ -4,9 +4,9 @@ import { Admin } from './admin';
 
 import { Store, select } from '@ngrx/store';
 
-import * as fromRoot from '../state/app.state';
 import * as adminActions from './state/actions';
 import * as fromAdmin from './state';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class AuthService {
@@ -14,7 +14,8 @@ export class AuthService {
     private online: boolean = false;
     redirectUrl: string;
 
-    constructor(private store: Store<fromRoot.State>) {
+    constructor(private store: Store<fromAdmin.State>,
+                private router: Router) {
 
       this.store.pipe(select(fromAdmin.getAdmin)).subscribe(admin => this.admin = admin);
 
@@ -23,7 +24,16 @@ export class AuthService {
 
     isLoggedIn(): boolean {
 
+      let admin = localStorage.getItem('admin');
+
+      if(admin != null) {
+
+        this.store.dispatch(new adminActions.AdminLoginSuccess(JSON.parse(admin)));
+        return true;
+      }
+
       return this.online;
+
     }
 
     getAdminRole(): string {
@@ -41,9 +51,11 @@ export class AuthService {
 
     logout(): void {
 
-      if(!this.online) {
+      if(this.online) {
 
         this.store.dispatch(new adminActions.AdminLogout);
+        localStorage.removeItem('admin');
+        this.router.navigateByUrl('/login');
       }
     }
 }
